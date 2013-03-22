@@ -1,0 +1,28 @@
+#! /usr/bin/env ruby
+
+def usage
+  puts
+  puts "USAGE:"
+  puts
+  puts "  doctools <project-name> [<documentation-section>]"
+  puts
+  puts "Example:"
+  puts
+  puts "  doctools frontend javascript"
+  puts
+end
+
+if ARGV.count < 1
+  usage
+  exit 1
+end
+
+project_name = ARGV[0]
+section      = ARGV[1] || ''
+
+# TODO (2013-03-22) Maybe use env var for the hostname?
+
+vim_filetype_command = %[echo 'vim: ft=markdown']
+curl_command = %[curl -L -s TODO://#{project_name}?section=#{section}]
+
+system "(#{vim_filetype_command}; #{curl_command}) | less"
