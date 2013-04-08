@@ -5,7 +5,7 @@ module Doctools
   describe Repo do
     pending 'Implement proper url parsing'
 
-    let(:repo) { Repo.new('vimrunner', 'git://github.com/AndrewRadev/vimrunner.git', 'master') }
+    let(:repo) { Repo.new('vimrunner', 'AndrewRadev', 'vimrunner', 'master') }
 
     it "knows its name" do
       repo.name.should eq 'vimrunner'

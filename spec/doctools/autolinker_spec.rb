@@ -3,10 +3,12 @@ require 'doctools/autolinker'
 
 module Doctools
   describe Autolinker do
-    let(:repo)   { stub(:name => 'name', :url => 'url') }
+    let(:repo)   { stub(:name => 'name', :url => 'url', :expand_path => 'stub') }
     let(:linker) { Autolinker.new(repo) }
 
     it "wraps file and directory paths with links" do
+      pending "Need to setup proper filesystem stubs (or test repo object?)"
+
       linker.link('app/models/user.rb').start_with?('<a').should be_true
       linker.link('user.rb').start_with?('<a').should be_true
       linker.link('app/models/').start_with?('<a').should be_true
