@@ -1,3 +1,4 @@
+require 'yaml'
 require 'pathname'
 
 module Doctools

@@ -1,3 +1,4 @@
+require 'fileutils'
 require 'doctools/config'
 
 module Doctools
@@ -12,28 +13,23 @@ module Doctools
     def self.all
       repos = {}
       Config.new.repos.map do |name, data|
-        ssh_url, branch = data.split('#')
-        repos[name] = Doc::Repo.new(name, ssh_url, branch)
+        username, project, branch = data.split('#')
+        repos[name] = Doctools::Repo.new(name, username, project, branch)
       end
       repos
     end
 
-    attr_reader :name, :branch
+    attr_reader :name, :github_username, :github_project, :branch
 
-    def initialize(name, ssh_url, branch)
-      @name    = name
-      @ssh_url = ssh_url
-      @branch  = branch
+    def initialize(name, github_username, github_project, branch)
+      @name            = name
+      @github_username = github_username
+      @github_project  = github_project
+      @branch          = branch
     end
 
-    # TODO (2013-03-22) Multiple variants of github urls
-    def github_name
-      @github_name ||= @ssh_url.gsub(/^git:\/\/github.com\/(.*?)\/(.+?)\.git$/, '\2')
-    end
-
-    # TODO (2013-03-22) Configurable?
     def expand_path(filename)
-      config.expand_path("target/.repos/#{@name}/#{filename}")
+      config.expand_path("repos/#{name}/#{filename}")
     end
 
     def cd
@@ -47,9 +43,8 @@ module Doctools
     #   - filename: A file to link to, relative to the repo url
     #   - line:     The line number to link to. Only works with :filename
     #
-    # TODO (2013-03-22) Generate url from username, repo
     def url(options = {})
-      url = "TODO://#{github_name}"
+      url = "https://github.com/#{github_username}/#{github_project}"
 
       if options[:filename]
         url = "#{url}/blob/#{branch}/#{options[:filename]}"

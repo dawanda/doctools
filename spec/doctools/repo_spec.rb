@@ -9,7 +9,7 @@ module Doctools
 
     it "knows its name" do
       repo.name.should eq 'vimrunner'
-      repo.github_name.should eq 'vimrunner'
+      repo.github_project.should eq 'vimrunner'
     end
 
     describe "#url" do

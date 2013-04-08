@@ -8,6 +8,7 @@ module Doctools
   #   @include rake-tasks            #=> Includes the output of rake -T
   #   @include sinatra(file/name.rb) #=> Includes sinatra endpoints parsed from the given file
   #
+  # TODO (2013-03-30) Use Repo object for rake?
   class MarkdownIncluder
     def initialize(text)
       @text   = text

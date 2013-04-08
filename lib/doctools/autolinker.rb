@@ -64,7 +64,7 @@ module Doctools
     end
 
     def repo_filename(filename)
-      config.expand_path("target/.repos/#{repo.name}/#{filename}")
+      repo.expand_path(filename)
     end
 
     def find_ctags_tag(symbol)
@@ -76,7 +76,7 @@ module Doctools
       return @ctags if @ctags
 
       if @repo
-        ctags_filename = config.expand_path("target/.repos/#{@repo.name}/tags")
+        ctags_filename = repo.expand_path("tags")
         if File.exist?(ctags_filename)
           @ctags = CtagsReader::Reader.new(ctags_filename)
         end

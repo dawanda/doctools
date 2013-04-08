@@ -1,3 +1,4 @@
 repos:
-  vimrunner:    "git://github.com/AndrewRadev/vimrunner.git#master"
-  ctags_reader: "git://github.com/AndrewRadev/ctags_reader.git#master"
+  sprockets:    "sstephenson#sprockets#master"
+  vimrunner:    "AndrewRadev#vimrunner#master"
+  ctags_reader: "AndrewRadev#ctags_reader#master"

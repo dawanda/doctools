@@ -20,6 +20,9 @@ module Doctools
           graph.add_edges($1, $2, :label => '1')
         elsif line =~ /(\w+) has many (\w+)s/
           graph.add_edges($1, $2, :label => 'N')
+        elsif line =~ /(\w+) has and belongs to many (\w+)s/
+          graph.add_edges($1, $2, :label => 'N')
+          graph.add_edges($2, $1, :label => 'N')
         end
       end
 
