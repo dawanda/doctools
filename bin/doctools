@@ -19,10 +19,9 @@ end
 
 project_name = ARGV[0]
 section      = ARGV[1] || ''
-
-# TODO (2013-03-22) Maybe use env var for the hostname?
+url          = ENV['DOCTOOLS_URL'] or raise "Need the $DOCTOOLS_URL env variable for the base url to query"
 
 vim_filetype_command = %[echo 'vim: ft=markdown']
-curl_command = %[curl -L -s TODO://#{project_name}?section=#{section}]
+curl_command = %[curl -L -s #{url}/api/#{project_name}?section=#{section}]
 
 system "(#{vim_filetype_command}; #{curl_command}) | less"
