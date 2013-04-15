@@ -1,1 +1,1 @@
-Documentation soon to come.
+Documentation soon to come (ironically enough).
