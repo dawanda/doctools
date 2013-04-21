@@ -1,3 +1,7 @@
+require 'bundler'
+
+Bundler::GemHelper.install_tasks
+
 $: << File.expand_path(File.dirname(__FILE__) + '/lib')
 
 desc "Build markdown files for rendering"
