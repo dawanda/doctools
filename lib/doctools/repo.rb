@@ -9,6 +9,7 @@ module Doctools
   #
   #   :repo_name => repo_object
   #
+  # TODO (2013-05-05) Use branch as an option, remove name
   class Repo
     def self.all
       repos = {}
